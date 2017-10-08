@@ -19,7 +19,7 @@ int main(int argc, const char * argv[]) {
         NSString *usersInp = [result stringByTrimmingCharactersInSet:(NSCharacterSet *)resultSet];
      
         while (gameOn == YES) {
-            if ([usersInp isEqual: @"roll"]) {
+            if ([usersInp isEqual: @"roll"] || [usersInp isEqual: @"r"]) {
                [player roll];
             }
 

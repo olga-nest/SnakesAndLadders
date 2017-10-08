@@ -3,7 +3,7 @@
 @implementation Player
 
 -(void)roll {
-    int diceValue = (arc4random_uniform(5) + 1);
+    int diceValue = (arc4random_uniform(6) + 1);
     NSLog(@"Your result is %d", diceValue);
 }
 

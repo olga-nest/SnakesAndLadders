@@ -16,9 +16,13 @@ int buf = 50;
     NSString *numberOfPlayersInput = [result1 stringByTrimmingCharactersInSet:(NSCharacterSet *)resultSet1];
     int numberOfPlayers = [numberOfPlayersInput intValue];
     
-    return numberOfPlayers;
-
+    if ([numberOfPlayersInput intValue] == nil) {
+        NSLog(@"Input a valid numeric value.");
+        [self getNumberOfPlayers];
+    } else {
+        return numberOfPlayers; }
     
+    return 0;
 }
 
 -(NSString *)getGameCommands {

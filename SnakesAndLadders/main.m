@@ -1,11 +1,13 @@
 #import <Foundation/Foundation.h>
 #import "Player.h"
+#import "PlayerManager.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
         BOOL gameOn = YES;
         
+        PlayerManager *playerManager = [[PlayerManager alloc]init];
         Player *player = [[Player alloc]init];
         
         int buf = 50;

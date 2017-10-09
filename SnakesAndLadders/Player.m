@@ -10,12 +10,30 @@
         _gameLogic = [NSDictionary new];
         _gameLogic = @{@5 : @10, @9: @12, @17: @15, @25 : @50, @33 : @11, @51 : @53, @57 : @32, @58 :@24, @60 : @2, @77 : @75, @81 : @90, @90 : @50};
         _gameOver = NO;
+        _output = @"";
         
     }
     return self;
 }
 
+-(instancetype)initWithName:(NSString *)name {
+    self = [super init];
+    if (self) {
+        _currentSquare = 0;
+        _gameLogic = [NSDictionary new];
+        _gameLogic = @{@5 : @10, @9: @12, @17: @15, @25 : @50, @33 : @11, @51 : @53, @57 : @32, @58 :@24, @60 : @2, @77 : @75, @81 : @90, @90 : @50};
+        _gameOver = NO;
+        _output = @"";
+        _name = name;
+        
+    }
+    return self;
+    
+}
+
+
 -(void)roll {
+    
     int diceRandomValue = (arc4random_uniform(6) + 1);
     NSLog(@"Your rolled a %d", diceRandomValue);
     
@@ -27,18 +45,26 @@
     } else {
 
     NSNumber *currentSquareNumber = [NSNumber numberWithInteger:self.currentSquare];
-    
+    NSMutableString *rollOutput = [NSMutableString stringWithFormat: @"***You rolled %d and landed on %ld", diceRandomValue, self.currentSquare];
+
+        
     if ([self.gameLogic objectForKey:currentSquareNumber] != nil) {
         if (self.currentSquare > [[self.gameLogic objectForKey:currentSquareNumber] integerValue]) {
             NSLog(@"Oops! Snake! You fall from %ld to %ld", self.currentSquare, [[self.gameLogic objectForKey:currentSquareNumber] integerValue]);
+            self.output = rollOutput;
+            [self output];
             self.currentSquare = [[self.gameLogic objectForKey:currentSquareNumber] integerValue];
         } else  if ((self.currentSquare < [[self.gameLogic objectForKey:currentSquareNumber] integerValue])) {
             NSLog(@"Yay! Ladder! You jumped from %ld to %ld", (long)self.currentSquare, [[self.gameLogic objectForKey:currentSquareNumber] integerValue]);
+            self.output = rollOutput;
+            [self output];
             self.currentSquare = [[self.gameLogic objectForKey:currentSquareNumber] integerValue];
         }
         self.currentSquare = self.currentSquare;
     } else {
-       NSLog(@"You landed on %ld", (long)self.currentSquare);
+        NSLog(@"You landed on %ld", (long)self.currentSquare);
+        self.output = rollOutput;
+        [self output];
     }
 }
 }

@@ -4,6 +4,7 @@
 
 @property NSInteger currentSquare;
 @property NSDictionary *gameLogic;
+@property BOOL gameOver;
 
 -(void)roll;
 

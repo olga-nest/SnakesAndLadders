@@ -21,6 +21,13 @@ int main(int argc, const char * argv[]) {
         while (gameOn == YES) {
             if ([usersInp isEqual: @"roll"] || [usersInp isEqual: @"r"]) {
                [player roll];
+                if ([player gameOver] == NO) {
+                    [player roll];
+                } else if ([player gameOver] == YES) {
+                    NSLog(@"Game is over!");
+                    gameOn = NO;
+                }
+
             }
 
         }
